@@ -1,3 +1,4 @@
+import Friend from './Friend';
 import React, { Component } from 'react';
 import {
   Image,
@@ -11,21 +12,6 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 20,
   },
-  friend: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  avatar: {
-    margin: 10,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-  },
-  name: {
-    fontSize: 18,
-    color: '#000',
-  }
 });
 
 export default class FriendsList extends Component {
@@ -43,10 +29,11 @@ export default class FriendsList extends Component {
         dataSource={this.state.ds}
         style={styles.list}
         renderRow={(friend) =>
-          <View style={styles.friend}>
-            <Image style={styles.avatar} source={{ uri: friend.avatarUrl }} />
-            <Text style={styles.name}>{friend.firstName} {friend.lastName}</Text>
-          </View>
+          <Friend
+            key={friend.id}
+            avatarUrl={friend.avatarUrl}
+            firstName={friend.firstName}
+            lastName={friend.lastName} />
         } />
     );
   }
